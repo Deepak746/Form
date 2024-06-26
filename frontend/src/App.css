@@ -72,4 +72,20 @@ body {
   color: red;
 }
 
-/* Additional styles can be added below */
+@media (min-width: 576px) {
+  .card {
+    width: 70%; /* Adjust width for smaller screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 50%; /* Adjust width for medium screens */
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: 40%; /* Adjust width for large screens */
+  }
+}
