@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use(cors({
 
-    origin: 'https://https://form-frontend-lyart.vercel.app/'
+    origin: 'https://sparkling-kulfi-6f3f70.netlify.app'
 
 }));
 
