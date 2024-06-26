@@ -18,10 +18,12 @@
 
 const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
+
 const FormDataSchema = new mongoose.Schema({
     email: { 
         type: String, 
-        required: true,
+        required: function() { return this.isMandate; },
         validate: {
             validator: function(v) {
                 return /^\S+@\S+\.\S+$/.test(v);
@@ -29,13 +31,13 @@ const FormDataSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid email!`
         }
     },
-    firstName: { type: String, required: true },
+    firstName: { type: String, required: function() { return this.isMandate; } },
     middleName: { type: String },
-    lastName: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
+    lastName: { type: String, required: function() { return this.isMandate; } },
+    dateOfBirth: { type: Date, required: function() { return this.isMandate; } },
     age: { 
         type: Number, 
-        required: true,
+        required: function() { return this.isMandate; },
         validate: {
             validator: function(v) {
                 return v >= 0 && v <= 120;
@@ -43,10 +45,10 @@ const FormDataSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid age! Age should be between 0 and 120.`
         }
     },
-    Gender: { type: String, required: true },
+    Gender: { type: String, required: function() { return this.isMandate; } },
     ContactNo: {
         type: String,
-        required: true,
+        required: function() { return this.isMandate; },
         validate: {
             validator: function(v) {
                 return /^[+]?[0-9]{1,4}?[-.\s]?[0-9]{1,14}([-.\s]?[0-9]{1,13})?$/.test(v);
@@ -56,7 +58,7 @@ const FormDataSchema = new mongoose.Schema({
     },
     "Alternate ContactNo": {
         type: String,
-        required: true,
+        required: function() { return this.isMandate; },
         validate: {
             validator: function(v) {
                 return /^[+]?[0-9]{1,4}?[-.\s]?[0-9]{1,14}([-.\s]?[0-9]{1,13})?$/.test(v);
@@ -64,94 +66,81 @@ const FormDataSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid alternate contact number!`
         }
     },
-    "Marital Status": { type: String, required: true },
-    "Nationality / Citizen": { type: String, required: true },
-    "Blood Group": { type: String, required: true },
+    "Marital Status": { type: String, required: function() { return this.isMandate; } },
+    "Nationality / Citizen": { type: String, required: function() { return this.isMandate; } },
+    "Blood Group": { type: String, required: function() { return this.isMandate; } },
     "Upload Documents": { type: String },
-    "Nationality / Citizen": { type: String, required: true },
-    "Blood Group": { type: String, required: true },
-    "Upload Documents": { type: String },
-
-    currentAddress: { type: String, required: true },
-    permanentAddress: { type: String, required: true },
-    currentLocation: { type: String, required: true },
-    preferredLocation: { type: String, required: true },
-
-    passport: { type: String, required: true },
+    currentAddress: { type: String, required: function() { return this.isMandate; } },
+    permanentAddress: { type: String, required: function() { return this.isMandate; } },
+    currentLocation: { type: String, required: function() { return this.isMandate; } },
+    preferredLocation: { type: String, required: function() { return this.isMandate; } },
+    passport: { type: String, required: function() { return this.isMandate; } },
     passportnumber: { type: String },
     "passport copy": { type: String },
-    aadhar: { type: String, required: true },
+    aadhar: { type: String, required: function() { return this.isMandate; } },
     "aadhar file": { type: String },
-    PAN: { type: String, required: true },
+    PAN: { type: String, required: function() { return this.isMandate; } },
     "PAN file": { type: String },
-    "driving license": { type: String, required: true },
+    "driving license": { type: String, required: function() { return this.isMandate; } },
     "DL file": { type: String },
-    voter: { type: String, required: true },
+    voter: { type: String, required: function() { return this.isMandate; } },
     "voter file": { type: String },
-
-    photo: { type: String, required: true },
-    linkedin: { type: String, required: true },
-    resume: { type: String, required: true },
-    socialmedia: { type: String, required: true },
-    othermedia: { type: String, required: true },
-    skills: { type: String, required: true },
-    languages: { type: String, required: true },
-
-    education: { type: String, required: true },
-    "education specialization": { type: String, required: true },
-    edu_institute: { type: String, required: true },
-    yearofcompletion: { type: Date, required: true },
-    percentage: { type: String, required: true },
-    edu_proof: { type: String, required: true },
-    certifications: { type: String, required: true },
+    photo: { type: String, required: function() { return this.isMandate; } },
+    linkedin: { type: String, required: function() { return this.isMandate; } },
+    resume: { type: String, required: function() { return this.isMandate; } },
+    socialmedia: { type: String, required: function() { return this.isMandate; } },
+    othermedia: { type: String, required: function() { return this.isMandate; } },
+    skills: { type: String, required: function() { return this.isMandate; } },
+    languages: { type: String, required: function() { return this.isMandate; } },
+    education: { type: String, required: function() { return this.isMandate; } },
+    "education specialization": { type: String, required: function() { return this.isMandate; } },
+    edu_institute: { type: String, required: function() { return this.isMandate; } },
+    yearofcompletion: { type: Date, required: function() { return this.isMandate; } },
+    percentage: { type: String, required: function() { return this.isMandate; } },
+    edu_proof: { type: String, required: function() { return this.isMandate; } },
+    certifications: { type: String, required: function() { return this.isMandate; } },
     certificates: { type: String },
     certificate_auth: { type: String },
     certification_dateofcompletion: { type: Date },
-    proof_of_certificate: { type: String, required: true },
-    tenative_date: { type: Date },
-    fresher: { type: String, required: true },
-
-    totalExperience: { type: String, required: true },
-    organizationName: { type: String, required: true },
-    designation: { type: String, required: true },
-    employmentStartDate: { type: Date, required: true },
+    proof_of_certificate: { type: String, required: function() { return this.isMandate; } },
+    tenative_date: { type: Date, required: function() { return this.isMandate; } },
+    fresher: { type: String, required: function() { return this.isMandate; } },
+    totalExperience: { type: String, required: function() { return this.isMandate; } },
+    organizationName: { type: String, required: function() { return this.isMandate; } },
+    designation: { type: String, required: function() { return this.isMandate; } },
+    employmentStartDate: { type: Date, required: function() { return this.isMandate; } },
     employmentEndDate: { type: Date },
-    "Roles And Responsibilities": { type: String, required: true },
-    reasonForLeaving: { type: String, required: true },
-    currentCTC: { type: String, required: true },
-    expectedCTC: { type: String, required: true },
-    noticePeriod: { type: String, required: true },
-
-    salarySlips: { type: String, required: true },
-    bankStatements: { type: String, required: true },
-    offerLetter: { type: String, required: true },
-    incrementLetter: { type: String, required: true },
-    relievingLetter: { type: String, required: true },
-
-    servingNotice: { type: String, required: true },
-    lastWorkingDate: { type: Date, required: true },
-    existingOffers: { type: String, required: true },
+    "Roles And Responsibilities": { type: String, required: function() { return this.isMandate; } },
+    reasonForLeaving: { type: String, required: function() { return this.isMandate; } },
+    currentCTC: { type: String, required: function() { return this.isMandate; } },
+    expectedCTC: { type: String, required: function() { return this.isMandate; } },
+    noticePeriod: { type: String, required: function() { return this.isMandate; } },
+    salarySlips: { type: String, required: function() { return this.isMandate; } },
+    bankStatements: { type: String, required: function() { return this.isMandate; } },
+    offerLetter: { type: String, required: function() { return this.isMandate; } },
+    incrementLetter: { type: String, required: function() { return this.isMandate; } },
+    relievingLetter: { type: String, required: function() { return this.isMandate; } },
+    servingNotice: { type: String, required: function() { return this.isMandate; } },
+    lastWorkingDate: { type: Date, required: function() { return this.isMandate; } },
+    existingOffers: { type: String, required: function() { return this.isMandate; } },
     offerOrganizationName: { type: String },
     offerLetterUpload: { type: String },
-    acceptedOffer: { type: String, required: true },
+    acceptedOffer: { type: String, required: function() { return this.isMandate; } },
     offerAcceptanceDate: { type: Date },
     proposedCTC: { type: String },
-
-    referenceName: { type: String, required: true },
-    referenceDesignation: { type: String, required: true },
-    referenceContactNo: { type: String, required: true },
-    referenceEmail: { type: String, required: true },
-    referenceRelationship: { type: String, required: true },
-    referenceCheckDate: { type: Date, required: true },
-
-    employmentVerificationConsent: { type: String, required: true },
-    authorizationToContact: { type: String, required: true },
-
-    backgroundCheckConsent: { type: String, required: true },
-    drugAlcoholTestingConsent: { type: String, required: true },
-    disclosureCriminalConvictions: { type: String, required: true },
+    referenceName: { type: String, required: function() { return this.isMandate; } },
+    referenceDesignation: { type: String, required: function() { return this.isMandate; } },
+    referenceContactNo: { type: String, required: function() { return this.isMandate; } },
+    referenceEmail: { type: String, required: function() { return this.isMandate; } },
+    referenceRelationship: { type: String, required: function() { return this.isMandate; } },
+    referenceCheckDate: { type: Date, required: function() { return this.isMandate; } },
+    employmentVerificationConsent: { type: String, required: function() { return this.isMandate; } },
+    authorizationToContact: { type: String, required: function() { return this.isMandate; } },
+    backgroundCheckConsent: { type: String, required: function() { return this.isMandate; } },
+    drugAlcoholTestingConsent: { type: String, required: function() { return this.isMandate; } },
+    disclosureCriminalConvictions: { type: String, required: function() { return this.isMandate; } },
     detailsCriminalConvictions: { type: String },
-    acknowledgement: { type: String, required: true }
+    acknowledgement: { type: String, required: function() { return this.isMandate; } }
 });
 
 module.exports = mongoose.model('FormData', FormDataSchema);
