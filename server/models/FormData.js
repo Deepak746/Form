@@ -18,8 +18,6 @@
 
 const mongoose = require('mongoose');
 
-const mongoose = require('mongoose');
-
 const FormDataSchema = new mongoose.Schema({
     email: { 
         type: String, 
