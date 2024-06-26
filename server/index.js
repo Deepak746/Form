@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path')
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -22,12 +23,20 @@ connection.once('open', () => {
 
 const formRoutes = require('./routes/formRoutes');
 app.use('/api/form', formRoutes);
+app.use(cors());
+
+app.use(cors({
+
+    origin: 'https://vyzenform.com'
+
+}));
 
 app.get("/", (req, res) => {
     app.use(express.static (path.resolve(__dirname, "frontend", "build")));
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
     });
-    
+
 app.listen(process.env.PORT || port, () => {
     console.log(`Server is running on port: ${port}`);
 });
+
