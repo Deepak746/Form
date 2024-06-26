@@ -195,7 +195,7 @@ function App() {
   // Example using fetch API in React
   const submitForm = async (formData) => {
     try {
-      const response = await axios.post(`${window.location.origin}/api/form/submit`, formData, {
+      const response = await axios.post(`https://form-three-sand.vercel.app/api/form/submit`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
