@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use(cors({
 
-    origin: 'https://vyzenform.com'
+    origin: 'https://https://form-frontend-lyart.vercel.app/'
 
 }));
 
