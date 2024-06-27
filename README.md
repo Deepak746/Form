@@ -7,7 +7,7 @@
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
-
+- [Environment variables](#Environment-Variables)
 
 ## Introduction
 
@@ -55,11 +55,11 @@ cd Form
     cd ../frontend
     npm install
 
-  ###Environment Variables
+  ### EnvironmentVariables
       Create a .env file in the server directory and add the following environment variables:
       MONGO_URI=your_mongodb_connection_string
       PORT=your_preferred_port
-##Usage
+## Usage
     ###Running the server
       In the server directory, start the backend server:
         node index.js
