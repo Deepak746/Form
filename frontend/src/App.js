@@ -200,7 +200,7 @@ function App() {
           'Content-Type': 'application/json',
         },
       });
-      alert(response.data);
+      alert("Thanks for registering!! We will contact you ASAP");
     } catch (error) {
       if (error.response.data.error) {
         alert(error.response.data.error);
