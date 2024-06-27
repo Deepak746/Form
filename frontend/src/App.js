@@ -349,7 +349,7 @@ function App() {
       updatedFormData[8]['servingNotice'].isMandate = true;
       updatedFormData[8]['lastWorkingDate'].isMandate = true;
     }
-    else if (name === 'existingOffers'){
+    else if (name === 'fresher'){
       updatedFormData[6]['totalExperience'].isMandate = false;
       updatedFormData[6]['organizationName'].isMandate = false;
       updatedFormData[6]['designation'].isMandate = false;
