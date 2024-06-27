@@ -74,18 +74,21 @@ body {
 
 @media (min-width: 576px) {
   .card {
-    width: 70% !important; /* Adjust width for smaller screens */
+    width: 90% !important; /* Adjust width for smaller screens */
+  }
+  .header-image .header {
+    width: 90% !important; /* Adjust width for smaller screens */
   }
 }
 
 @media (min-width: 768px) {
-  .card {
+  .card .header-image .header {
     width: 50% !important; /* Adjust width for medium screens */
   }
 }
 
 @media (min-width: 992px) {
-  .card {
+  .card .header-image .header {
     width: 40% !important; /* Adjust width for large screens */
   }
 }
