@@ -192,7 +192,6 @@ function App() {
     submitForm(flattenedFormData)
   };
 
-  // Example using fetch API in React
   const submitForm = async (formData) => {
     try {
       const response = await axios.post('https://form-7nzg.onrender.com/api/form/submit', formData, {
@@ -201,8 +200,10 @@ function App() {
         },
       });
       alert(response.data);
+      setIsSubmitted(true);
+      navigate('/success'); // Change '/success' to your desired route
     } catch (error) {
-      if (error.response.data.error) {
+      if (error.response && error.response.data && error.response.data.error) {
         alert(error.response.data.error);
       } else {
         alert('Error submitting form');
@@ -211,6 +212,19 @@ function App() {
       localStorage.removeItem('formData');
     }
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="header">
+        <img src={headerImage} alt="Header" className="header-image" />
+      {/* Other content of your header */}
+      <div className="success-message">
+        <h2>Thank you for submitting your application!</h2>
+        {/* Add any additional success message or navigation here */}
+      </div>
+      </div>
+    );
+  }
 
   const validatePhoneNumber = (phoneNumber) => {
     try {
@@ -262,36 +276,7 @@ function App() {
     const updatedFormData = { ...formData };
 
     for (let page in updatedFormData) {
-      // if (name === 'ContactNo' || name === 'Alternate ContactNo' || name === 'referenceContactNo' ) {
-      //   console.log("page", pageNum)
-      //   const isValidPhoneNumber = validatePhoneNumber(value);
-      //   updatedFormData[pageNum][name].value = value;
-      //   updatedFormData[pageNum][name].errorLabel = isValidPhoneNumber ? '' : 'Invalid phone number format';
-      // }
-      // if (name === 'aadhar'){
-      //   console.log("page", pageNum)
-      //   const isvalidAadhaar = validateAadhaarNumber(value)
-      //   updatedFormData[pageNum][name].value = value;
-      //   updatedFormData[pageNum][name].errorLabel = isvalidAadhaar ? '' : 'Invalid aadhar number';
-      // }
-      // if (name === 'PAN'){
-      //   console.log("page", pageNum)
-      //   const isvalidPAN = validatePANNumber(value)
-      //   updatedFormData[pageNum][name].value = value;
-      //   updatedFormData[pageNum][name].errorLabel = isvalidPAN ? '' : 'Invalid PAN number FORMAT: ABCDE1234F';
-      // }
-      // if(name === 'percentage'){
-      //   console.log("page", pageNum)
-      //   const isvalidpercentage = validatePercentage(value)
-      //   updatedFormData[pageNum][name].value = value;
-      //   updatedFormData[pageNum][name].errorLabel = isvalidpercentage ? '' : 'Invalid Input  FORMAT: 88.56%';
-      // }
-      // if(name === 'currentCTC' || name === 'expectedCTC' || name === 'proposedCTC'){
-      //   console.log("page", pageNum)
-      //   const isvalidCTC = validateCTC(value)
-      //   updatedFormData[pageNum][name].value = value;
-      //   updatedFormData[pageNum][name].errorLabel = isvalidCTC ? '' : 'Enter numbers only';
-      // }
+      
       if (updatedFormData[page][name]) {
         updatedFormData[page][name].value = value;
       }
