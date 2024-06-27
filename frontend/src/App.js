@@ -192,6 +192,7 @@ function App() {
     submitForm(flattenedFormData)
   };
 
+  // Example using fetch API in React
   const submitForm = async (formData) => {
     try {
       const response = await axios.post('https://form-7nzg.onrender.com/api/form/submit', formData, {
@@ -200,10 +201,8 @@ function App() {
         },
       });
       alert(response.data);
-      setIsSubmitted(true);
-      navigate('/success'); // Change '/success' to your desired route
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.error) {
+      if (error.response.data.error) {
         alert(error.response.data.error);
       } else {
         alert('Error submitting form');
@@ -212,19 +211,6 @@ function App() {
       localStorage.removeItem('formData');
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="header">
-        <img src={headerImage} alt="Header" className="header-image" />
-      {/* Other content of your header */}
-      <div className="success-message">
-        <h2>Thank you for submitting your application!</h2>
-        {/* Add any additional success message or navigation here */}
-      </div>
-      </div>
-    );
-  }
 
   const validatePhoneNumber = (phoneNumber) => {
     try {
